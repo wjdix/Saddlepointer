@@ -1,0 +1,11 @@
+#Saddlepointer
+
+To find saddlepoints in a matrix run
+
+    SaddlePointer.find(array)
+
+It returns a list of points with x and y coordinates or a string stating that none can be found.
+
+To run tests: 
+
+    rake
