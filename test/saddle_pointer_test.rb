@@ -56,5 +56,11 @@ module SaddlePointer
       assert_includes found, Point.new(3,2)
       assert_includes found, Point.new(4,1)
     end
+    def test_verifies_a_wellformed_array
+      bad_array = [[1, 2, 3, 4], [1, 2, 3]]
+      assert_raises MalformedArray do
+        SaddlePointer.find bad_array
+      end
+    end
   end
 end

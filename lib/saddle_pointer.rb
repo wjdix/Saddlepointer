@@ -19,6 +19,7 @@ module SaddlePointer
 
   class << self
     def find array
+      verify_array! array
       row_array = find_row_candidates(array)
       col_array = find_column_candidates(array)
       row_array.select{|point| col_array.include? point }.tap do |selected|
@@ -54,6 +55,11 @@ module SaddlePointer
       end
       candidates
     end
+    
+    def verify_array! array
+      length = array.first.length
+      raise MalformedArray unless array.all?{|row| row.length == length}
+    end
   end
-
+  class MalformedArray < RuntimeError ; end
 end
