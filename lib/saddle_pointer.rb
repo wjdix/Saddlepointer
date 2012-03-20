@@ -1,4 +1,5 @@
 require "saddle_pointer/version"
+require "set"
 
 module SaddlePointer
   class Point
@@ -10,12 +11,24 @@ module SaddlePointer
       other.x == self.x && 
         other.y == self.y
     end
+    def inspect
+      "(#{x}, #{y})"
+    end
   end
 
 
   class << self
     def find array
+      row_array = find_row_candidates(array)
+      col_array = find_column_candidates(array)
+      row_array.select{|point| col_array.include? point }.tap do |selected|
+        if selected.empty?
+          return "No saddle points found"
+        end
+      end
     end
+
+
     def find_row_candidates array
       candidates = []
       array.each_with_index do |row, row_idx|
