@@ -1,5 +1,8 @@
 require "saddle_pointer/version"
 
 module SaddlePointer
-  # Your code goes here...
+  class << self
+    def find(array)
+    end
+  end
 end
